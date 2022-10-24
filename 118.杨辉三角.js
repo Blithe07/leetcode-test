@@ -26,7 +26,7 @@ var generate = function (numRows) {
     /**
      * 根据错一位再逐个相加计算
      * 当前行 【1，2，1】
-     * 下一行为 0，1，2，1 + 1，2，1，0
+     * 下一行为 0，1，2，1 + 1，2，1，0 
      */
     const result = [[1]]
     for (let i = 1; i < numRows; i++) {
