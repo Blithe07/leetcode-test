@@ -57,26 +57,51 @@ var postorderTraversal = function (root) {
     // return result
     /**
      * morris遍历
+     *  1.能遇到两次的节点，第二次遇到时，打印其节点左子树逆序右边界
+     *  2.单独逆序打印整棵树右边界
      */
+    const pushVal = (node) => {
+        const tail = reverseEdge(node)
+        let cur = tail
+        while (cur) {
+            result.push(cur.val)
+            cur = cur.right
+        }
+        reverseEdge(tail)
+    }
+    const reverseEdge = (from) => {
+        let next, prev
+        while (from) {
+            next = from.right
+            from.right = prev
+            prev = from
+            from = next
+        }
+        return prev
+    }
     let cur = root, mostRight
     const result = []
     while (cur) {
         mostRight = cur.left
         if (mostRight) {
-            while (mostRight.right && mostRight !== cur) {
+            while (mostRight.right && mostRight.right !== cur) {
                 mostRight = mostRight.right
             }
-            if (!mostRight) {
+            if (!mostRight.right) {
                 mostRight.right = cur
                 cur = cur.left
                 continue
             } else {
                 mostRight.right = null
+                // 对应1.
+                pushVal(cur.left)
             }
         }
         cur = cur.right
     }
-    
+    // 对应2.
+    pushVal(root)
+    return result
 };
 // @lc code=end
 
