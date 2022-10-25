@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=144 lang=javascript
+ * @lc app=leetcode.cn id=145 lang=javascript
  *
- * [144] 二叉树的前序遍历
+ * [145] 二叉树的后序遍历
  */
 
 // @lc code=start
@@ -17,64 +17,66 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var preorderTraversal = function (root) {
+var postorderTraversal = function (root) {
     /**
-     * 递归，内部维护栈
+     * 内部维护栈
      */
     // const result = []
-    // const preorder = (root) => {
+    // const postorder = (root) => {
     //     if (!root) return
+    //     postorder(root.left)
+    //     postorder(root.right)
     //     result.push(root.val)
-    //     preorder(root.left)
-    //     preorder(root.right)
     // }
-    // preorder(root)
+    // postorder(root)
     // return result
     /**
-     * 迭代，手动维护栈
+     * 显示维护栈
      */
     // const result = []
     // const stack = []
+    // let prev
     // while (root || stack.length) {
     //     while (root) {
     //         stack.push(root)
-    //         result.push(root.val)
     //         root = root.left
     //     }
     //     root = stack.pop()
-    //     root = root.right
+    //     if (!root.right || root.right === prev) {
+    //         // 不存在右节点或者该节点的右节点未被访问过
+    //         result.push(root.val)
+    //         prev = root
+    //         // 避免压重复的节点，导致死循环。并且可以跳出最外层循环
+    //         root = null
+    //     } else {
+    //         // 存在右节点，当前节点重新入栈，指针向右移动
+    //         stack.push(root)
+    //         root = root.right
+    //     }
     // }
-    // return result\
+    // return result
     /**
      * morris遍历
-     *   1.只会遇到一次的节点，入栈
-     *   2.能遇到两次的节点，第一次入栈
      */
-    if (!root) return []
-    const result = []
     let cur = root, mostRight
+    const result = []
     while (cur) {
         mostRight = cur.left
         if (mostRight) {
-            while (mostRight.right && mostRight.right !== cur) {
+            while (mostRight.right && mostRight !== cur) {
                 mostRight = mostRight.right
             }
-            if (!mostRight.right) {
-                // 对应2.
-                result.push(cur.val)
+            if (!mostRight) {
                 mostRight.right = cur
                 cur = cur.left
                 continue
             } else {
-                mostRight = null
+                mostRight.right = null
             }
-        } else {
-            // 无左树，对应1.
-            result.push(cur.val)
         }
         cur = cur.right
     }
-    return result
+    
 };
 // @lc code=end
 
