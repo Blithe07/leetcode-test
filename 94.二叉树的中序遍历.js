@@ -47,6 +47,8 @@ var inorderTraversal = function (root) {
      */
     /**
      * morris遍历
+     *  1.只会遇到一次的节点，入栈
+     *  2.能遇到两次的节点，第二次入栈
      */
     if (!root) return []
     const result = []
