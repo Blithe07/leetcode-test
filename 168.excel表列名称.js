@@ -12,10 +12,19 @@
 var convertToTitle = function (columnNumber) {
     let ans = []
     while (columnNumber > 0) {
-        // 避免老六字母Z会转换成@
-        const a0 = (columnNumber - 1) % 26 + 1
-        ans.push(String.fromCharCode(a0 + 'A'.charCodeAt() - 1))
-        columnNumber = Math.floor((columnNumber - a0) / 26)
+        /**
+         *  方式1
+         *  // 避免老六字母Z会转换成@
+         *  const a0 = (columnNumber - 1) % 26 + 1
+         *  ans.push(String.fromCharCode(a0 + 'A'.charCodeAt() - 1))
+         *  columnNumber = Math.floor((columnNumber - a0) / 26)
+         *  */
+        /**
+         * 方式2
+         */
+        columnNumber--
+        ans.push(String.fromCharCode(columnNumber % 26 + 'A'.charCodeAt()))
+        columnNumber = Math.floor(columnNumber / 26)
     }
     return ans.reverse().join('')
 };
