@@ -27,7 +27,7 @@ var solution = function (isBadVersion) {
     return function (n) {
         let left = 1, right = n
         while (left < right) {
-            const mid = left + (right - left) >> 1
+            const mid = left + ((right - left) >> 1)
             if (isBadVersion(mid)) {
                 right = mid
             } else {
