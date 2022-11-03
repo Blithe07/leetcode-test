@@ -25,4 +25,3 @@ var summaryRanges = function (nums) {
     return result
 };
 // @lc code=end
-console.log(summaryRanges([0, 2, 3, 4, 6, 8, 9]));
