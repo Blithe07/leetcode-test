@@ -1,0 +1,31 @@
+/*
+ * @lc app=leetcode.cn id=258 lang=javascript
+ *
+ * [258] 各位相加
+ */
+
+// @lc code=start
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var addDigits = function (num) {
+    /**
+     * 循环，时间O(log num)，空间O(1)
+     */
+    // while (num >= 10) {
+    //     let sum = 0
+    //     while (num > 0) {
+    //         sum += num % 10
+    //         num = Math.floor(num / 10)
+    //     }
+    //     num = sum
+    // }
+    // return num
+    /**
+     * 数学，时间O(1)，空间O(1)
+     */
+    return (num - 1) % 9 + 1
+};
+// @lc code=end
+
