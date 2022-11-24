@@ -46,6 +46,7 @@ var repeatedSubstringPattern = function (s) {
      * @param {String} s2 短串
      */
     const KMP = (s1, s2) => {
+        if (!s1 || !s2) return -1
         const arr1 = s1.split('')
         const arr2 = s2.split('')
         const next = getNext(arr2)
@@ -60,20 +61,20 @@ var repeatedSubstringPattern = function (s) {
                 i2 = next[i2]
             }
         }
-        return i2 === s2.length ? i1 - i2 : -1
+        return i2 === arr2.length ? i1 - i2 : -1
     }
     /**
      * 
      * @param {String[]} arr2 
      */
     const getNext = (arr2) => {
-        if (str2Arr.length === 1) return [-1]
+        if (arr2.length === 1) return [-1]
         const next = new Array(arr2.length)
         next[0] = -1
         next[1] = 0
         let i = 2, num = 0
-        while (i < next.length) {
-            if (arr2[num] === arr2[i - 1]) {
+        while (i < arr2.length) {
+            if (arr2[i - 1] === arr2[num]) {
                 next[i++] = ++num
             } else if (num > 0) {
                 num = next[num]
