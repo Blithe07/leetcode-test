@@ -21,9 +21,9 @@ var findRelativeRanks = function (score) {
     const result = new Array(len).fill(0)
     for (let i = 0; i < len; i++) {
         if (i >= 3) {
-            result[arr[i][1]] = (i + 1 + '')
+            result[arr[i][1]] = i + 1 + ''
         } else {
-            result[arr[i][1]] = (desc[i])
+            result[arr[i][1]] = desc[i]
         }
     }
     return result
