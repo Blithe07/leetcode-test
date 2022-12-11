@@ -68,7 +68,6 @@ class MinHeap {
     }
     poll() {
         if (this.size() === 0) return
-        const result = this.data[0];
         const last = this.data.pop();
         if (this.size() !== 0) {
             this.data[0] = last;
