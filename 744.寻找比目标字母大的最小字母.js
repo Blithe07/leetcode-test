@@ -21,7 +21,7 @@ var nextGreatestLetter = function (letters, target) {
     // }
     // return letters[0]
     /**
-     * 二分查找，时间复杂度O(logN)，是、空间复杂度O(1)
+     * 二分查找，时间复杂度O(log)，是、空间复杂度O(1)
      */
     if (target >= letters[letters.length - 1]) return letters[0]
     let left = 0, right = letters.length - 1
