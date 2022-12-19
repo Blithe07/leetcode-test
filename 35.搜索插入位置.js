@@ -47,12 +47,12 @@ var searchInsert = function (nums, target) {
      // }
      */
     /**
-     * 通过位运算
+     * 二分查找
      */
     const n = nums.length;
     let left = 0, right = n - 1, ans = n;
     while (left <= right) {
-        let mid = ((right - left) >> 1) + left;
+        const mid = (left + right) >> 1;
         if (target <= nums[mid]) {
             ans = mid;
             right = mid - 1;
